@@ -62,7 +62,12 @@ import sizesJSON from '@/mocks/sizes.json';
 import saucesJSON from "@/mocks/sauces.json";
 import ingredientsJSON from '@/mocks/ingredients.json';
 import { computed, reactive } from "vue";
-import { normalizeDough, normalizeSizes, normalizeSauces, normalizeIngredients } from "@/common/helpers/normalize";
+import {
+  normalizeDough,
+  normalizeSizes,
+  normalizeSauces,
+  normalizeIngredients
+} from "@/common/helpers/normalize";
 import DoughSelector from "@/modules/constructor/DoughSelector.vue";
 import DiameterSelector from "@/modules/constructor/DiameterSelector.vue";
 import SauceSelector from "@/modules/constructor/SauceSelector.vue";
