@@ -8,16 +8,16 @@
         <label
             v-for="doughType in items"
             :key="doughType.id"
-            :class="`dough__input dough__input--${doughType.value}`"
+            class="dough__input"
         >
           <input
               type="radio"
               name="dough"
+              :value="doughType.id"
+              :checked="doughType.id === modelValue"
               class="visually-hidden"
-              :value="doughType.value"
-              :checked="doughType.value === modelValue"
-              @input="emit('update:modelValue', doughType.value)"
-          >
+              @input="emit('update:modelValue', doughType.id)"
+          />
           <img :src="getImage(doughType.image)" :alt="doughType.name" />
 
           <b>{{ doughType.name }}</b>
@@ -34,13 +34,13 @@
 import { getImage } from "@/common/helpers/getImage";
 
 defineProps({
+  modelValue: {
+    type: Number,
+    default: "",
+  },
   items: {
     type: Array,
     default: () => [],
-  },
-  modelValue: {
-    type: String,
-    default: "",
   },
 })
 

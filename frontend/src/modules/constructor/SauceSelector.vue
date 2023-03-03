@@ -3,17 +3,17 @@
     <p>Основной соус:</p>
 
     <label
-        class="radio ingredients__input"
         v-for="sauceType in items"
         :key="sauceType.id"
+        class="radio ingredients__input"
     >
       <input
           type="radio"
           name="sauce"
           :value="sauceType.value"
-          :checked="sauceType.value === modelValue"
-          @input="emit('update:modelValue', sauceType.value)"
-      >
+          :checked="sauceType.id === modelValue"
+          @input="emit('update:modelValue', sauceType.id)"
+      />
       <span>{{ sauceType.name }}</span>
     </label>
   </div>
@@ -21,13 +21,13 @@
 
 <script setup>
 defineProps({
+  modelValue: {
+    type: Number,
+    default: "",
+  },
   items: {
     type: Array,
     default: () => [],
-  },
-  modelValue: {
-    type: String,
-    default: "",
   },
 })
 

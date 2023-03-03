@@ -218,13 +218,12 @@
 </template>
 
 <script setup>
-const getImage = (image) => {
-  return new URL(`../assets/img/${image}`, import.meta.url).href;
-};
+import { getImage } from "@/common/helpers/getImage";
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/ds-system/ds.scss";
+@import "@/assets/scss/mixins/mixins.scss";
 
 .order {
   margin-bottom: 32px;
