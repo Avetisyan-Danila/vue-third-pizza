@@ -242,7 +242,6 @@ const editPizza = async (index) => {
 };
 
 const submit = async () => {
-  console.log('a')
   if (deliveryOption.value === "home") {
     cartStore.setAddress(profileStore.addresses[0]);
   }
