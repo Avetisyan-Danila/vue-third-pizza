@@ -5,6 +5,7 @@ import { MiscResource } from "@/services/resources/misc.resource";
 import { OrderResource } from "@/services/resources/order.resource";
 import { SauceResource } from "@/services/resources/sauce.resource";
 import { SizeResource } from "@/services/resources/size.resource";
+import { AuthResource } from "@/services/resources/auth.resource";
 
 export default {
     address: new AddressResource(),
@@ -14,4 +15,5 @@ export default {
     order: new OrderResource(),
     sauce: new SauceResource(),
     size: new SizeResource(),
+    auth: new AuthResource(),
 };
