@@ -3,7 +3,7 @@
     <div class="layout__sidebar sidebar">
       <router-link :to="{ name: 'home' }" class="logo layout__logo">
         <img
-            src="@/assets/img/logo.svg"
+            :src="getPublicImage('/public/img/logo.svg')"
             alt="V!U!E! Pizza logo"
             width="90"
             height="40"
@@ -19,6 +19,10 @@
   </main>
 </template>
 
+<script setup>
+import { getPublicImage } from "@/common/helpers/public-image";
+</script>
+
 <style lang="scss">
 @import "@/assets/scss/ds-system/ds.scss";
 
@@ -27,38 +31,28 @@
   z-index: 2;
   top: 0;
   left: 0;
-
   width: 180px;
   height: 100%;
-
   background-color: rgba($green-500, 0.05);
 }
 
 .layout__logo {
   display: block;
-
   margin-bottom: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
-
   background-color: $green-500;
-
   img {
     display: block;
-
     margin: 0 auto;
   }
 }
 
 .layout__link {
   @include b-s14-h16;
-
   display: block;
-
   padding: 8px 14px;
-
   transition: 0.3s;
-
   color: $black;
 
   &--active {
@@ -87,13 +81,6 @@
 .layout__button {
   $self: &;
   margin-top: 40px;
-
-  /*
-   * Добавив дополнительный селектор [type="button"],
-   * мы удлиняем общую цепочку селекторов для элемента.
-   * Это позволяет поставить стили, соответствующие этому селектору, последними в очереди
-   * и получить именно те стили, которые указаны — игнорируя остальные.
-   */
   button[type="button"] {
     padding: 12px 23px;
   }

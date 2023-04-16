@@ -1,10 +1,9 @@
 <template>
   <div class="content__dough">
-
     <div class="sheet">
       <h2 class="title title--small sheet__title">Выберите тесто</h2>
 
-      <div class="sheet__content dough">
+      <div class="sheet__content">
         <label
             v-for="doughType in items"
             :key="doughType.id"
@@ -18,31 +17,29 @@
               class="visually-hidden"
               @input="emit('update:modelValue', doughType.id)"
           />
-          <img :src="getImage(doughType.image)" :alt="doughType.name" />
+          <img :src="getPublicImage(doughType.image)" :alt="doughType.name" />
 
           <b>{{ doughType.name }}</b>
           <span>{{ doughType.description }}</span>
         </label>
       </div>
-
     </div>
-
   </div>
 </template>
 
 <script setup>
-import { getImage } from "@/common/helpers/getImage";
+import { getPublicImage } from "@/common/helpers/public-image";
 
 defineProps({
   modelValue: {
     type: Number,
-    default: "",
+    required: true,
   },
   items: {
     type: Array,
     default: () => [],
   },
-})
+});
 
 const emit = defineEmits(["update:modelValue"]);
 </script>

@@ -3,12 +3,12 @@
     <div class="sheet">
       <h2 class="title title--small sheet__title">Выберите размер</h2>
 
-      <div class="sheet__content diameter">
+      <div class="sheet__content">
         <label
             v-for="sizeType in items"
             :key="sizeType.id"
             class="diameter__input"
-            :class="`diameter__input--${sizeType.value}`"
+            :class="`diameter__input--${sizeType.id}`"
         >
           <input
               type="radio"
@@ -29,13 +29,13 @@
 defineProps({
   modelValue: {
     type: Number,
-    default: "",
+    required: true,
   },
   items: {
     type: Array,
     default: () => [],
   },
-})
+});
 
 const emit = defineEmits(["update:modelValue"]);
 </script>
@@ -43,13 +43,11 @@ const emit = defineEmits(["update:modelValue"]);
 <style lang="scss" scoped>
 @import "@/assets/scss/ds-system/ds.scss";
 @import "@/assets/scss/mixins/mixins.scss";
-
 .content__diameter {
   width: 373px;
   margin-top: 15px;
   margin-bottom: 15px;
 }
-
 .diameter__input {
   margin-right: 8.7%;
   margin-bottom: 20px;
@@ -68,7 +66,7 @@ const emit = defineEmits(["update:modelValue"]);
       transition: 0.3s;
       border-radius: 50%;
       background-color: $green-100;
-      background-image: url("@/assets/img/diameter.svg");
+      background-image: url("/api/public/img/diameter.svg");
       background-repeat: no-repeat;
       background-position: center;
     }

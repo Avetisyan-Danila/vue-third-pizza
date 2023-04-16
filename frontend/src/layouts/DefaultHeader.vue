@@ -3,7 +3,7 @@
     <div class="header__logo">
       <router-link :to="{ name: 'home' }" class="logo">
         <img
-            src="@/assets/img/logo.svg"
+            :src="getPublicImage('/public/img/logo.svg')"
             alt="V!U!E! Pizza logo"
             width="90"
             height="40"
@@ -11,27 +11,17 @@
       </router-link>
     </div>
     <div class="header__cart">
-      <router-link :to="{ name: 'cart' }">0 ₽</router-link>
+      <router-link :to="{ name: 'cart' }">{{ cartStore.total }} ₽</router-link>
     </div>
     <div class="header__user">
-      <router-link :to="{ name: 'profile' }">
-        <picture>
-          <source
-              type="image/webp"
-              srcset="
-              @/assets/img/users/user5.webp    1x,
-              @/assets/img/users/user5@2x.webp 2x
-            "
-          />
-          <img
-              src="@/assets/img/users/user5.jpg"
-              srcset="@/assets/img/users/user5@2x.jpg"
-              alt="Василий Ложкин"
-              width="32"
-              height="32"
-          />
-        </picture>
-        <span>Василий Ложкин</span>
+      <router-link v-if="authStore.isAuthenticated" :to="{ name: 'profile' }">
+        <img
+            :src="getPublicImage(authStore.user.avatar)"
+            :alt="authStore.user.name"
+            width="32"
+            height="32"
+        />
+        <span>{{ authStore.user.name }}</span>
       </router-link>
       <div
           v-if="authStore.isAuthenticated"
@@ -55,6 +45,7 @@ import { getPublicImage } from "@/common/helpers/public-image";
 
 const authStore = useAuthStore();
 const cartStore = useCartStore();
+
 const router = useRouter();
 
 const logout = async () => {
@@ -65,7 +56,6 @@ const logout = async () => {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/ds-system/ds";
-
 .header {
   position: relative;
   z-index: 2;
@@ -88,7 +78,7 @@ const logout = async () => {
     transition: 0.3s;
     color: $white;
     background-color: $green-500;
-    background-image: url("@/assets/img/cart.svg");
+    background-image: url("/api/public/img/cart.svg");
     background-repeat: no-repeat;
     background-position: 20px center;
     background-size: 29px 27px;
@@ -137,6 +127,7 @@ const logout = async () => {
   }
 }
 .header__logout {
+  cursor: pointer;
   &::before {
     display: inline-block;
     width: 32px;
@@ -144,7 +135,7 @@ const logout = async () => {
     margin-right: 8px;
     content: "";
     vertical-align: middle;
-    background: url("@/assets/img/login.svg") no-repeat center;
+    background: url("/api/public/img/login.svg") no-repeat center;
     background-size: auto 50%;
   }
 }
@@ -156,7 +147,7 @@ const logout = async () => {
     margin-left: 8px;
     content: "";
     vertical-align: middle;
-    background: url("@/assets/img/login.svg") no-repeat center;
+    background: url("/api/public/img/login.svg") no-repeat center;
     background-size: auto 50%;
   }
 }
