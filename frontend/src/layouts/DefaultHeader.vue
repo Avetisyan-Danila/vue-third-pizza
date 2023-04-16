@@ -23,6 +23,7 @@
         />
         <span>{{ authStore.user.name }}</span>
       </router-link>
+
       <div
           v-if="authStore.isAuthenticated"
           class="header__logout"

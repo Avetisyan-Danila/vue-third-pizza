@@ -129,9 +129,11 @@ const addToCart = async () => {
 
 const resetPizza = () => {
   pizzaStore.setName("");
-  pizzaStore.setDough(dataStore.doughs[0].id);
-  pizzaStore.setSize(dataStore.sizes[0].id);
-  pizzaStore.setSauce(dataStore.sauces[0].id);
+  if (dataStore.isDataLoaded) {
+    pizzaStore.setDough(dataStore.doughs[0].id);
+    pizzaStore.setSize(dataStore.sizes[0].id);
+    pizzaStore.setSauce(dataStore.sauces[0].id);
+  }
   pizzaStore.setIngredients([]);
 };
 
